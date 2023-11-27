@@ -1,0 +1,18 @@
+
+SELECT Students.StudentID, Students.Name
+FROM Students
+JOIN Enrollments ON Students.StudentID = Enrollments.StudentID
+WHERE Enrollments.CourseID = '101';
+
+
+SELECT Students.StudentID, Students.Name, SUM(Courses.Credits) AS TotalCredits
+FROM Students
+JOIN Enrollments ON Students.StudentID = Enrollments.StudentID
+JOIN Courses ON Enrollments.CourseID = Courses.CourseID
+GROUP BY Students.StudentID, Students.Name;
+
+
+SELECT Courses.CourseID, Courses.CourseName, COUNT(Enrollments.StudentID) AS EnrolledStudents
+FROM Courses
+LEFT JOIN Enrollments ON Courses.CourseID = Enrollments.CourseID
+GROUP BY Courses.CourseID, Courses.CourseName;
